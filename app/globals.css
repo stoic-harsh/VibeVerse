@@ -2,21 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
 textarea:is(:focus){
     border-color: teal; 
-    border-width: 2px;
-    padding: 15px;
+    border-width: 3px;
 }
 
 textarea::-webkit-scrollbar{
     width: 0px;
 }
 
-button{
+#submit{
     transition: all 0.5s;
 }
 
-button:hover{
+#submit:hover{
     background-color: white;
     border: 2px solid green;
     box-shadow: 3px 3px 15px rgba(0, 128, 0, 0.495), -3px -3px 15px rgba(0, 128, 0, 0.495),-3px 3px 15px rgba(0, 128, 0, 0.495),3px -3px 15px rgba(0, 128, 0, 0.495);
