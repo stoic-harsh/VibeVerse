@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 
-const Form = ({open, alert})=>{
+const Form = ({open, alert, color})=>{
     const [prompt, setPrompt] = useState("");
-
+    const [text, setText] = useState("hey");
+    const [display, setDisplay] = useState(false);
 
     // fetchRequest
     const sendData = async (prompt)=>{
         try{
-            const response = await fetch('http://localhost:3000/api/input', {
+            const response = await fetch('/api/input/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,20 +21,23 @@ const Form = ({open, alert})=>{
         });
 
         if(response.ok){
-            alert('Sent Successfully');
-            open(true);
+            const res = await response.json();
+            setText(res.result.text);
+            setDisplay(true);
         }
         else{
             alert("Error occured");
+            color('warning');
             open(true);
         }
         }catch(err){
             alert(err.message);
+            color('danger');
             open(true);
         }
     }
 
-    return <div className="mt-[60px] w-screen h-auto flex justify-center items-center">
+    return <div className="mt-[60px] w-screen h-auto flex flex-col justify-center items-center">
 
         <div className='min-w-[50vw] flex flex-col justify-center'>
         <textarea className='w-full p-3 h-[50px]
@@ -45,11 +49,22 @@ const Form = ({open, alert})=>{
         />
         
         <button id="submit" className='bg-green-500 border-2 m-4 mr-0 px-4 py-2 rounded-md
-         self-end' onClick={()=>{
+         self-end' onClick={async ()=>{
+            alert('Request Sent');
+            color('success');
             open(true);
-            console.log(prompt);
+
+            sendData(prompt);
+
          }} >Submit</button>
+
         </div>
+
+        {
+            display && <div className = {`bg-[#22ad5529] my-10 w-[55vw] rounded-md px-6 py-4 `}>
+                {text}
+            </div>
+        }   
         
     </div>
 }

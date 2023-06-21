@@ -3,7 +3,6 @@
 import Title from '@/components/title';
 import Welcome from '@/components/welcome';
 import TextArea from '@/components/form.jsx';
-import Response from '@/components/response';
 
 // alert message
 import { useState, forwardRef } from 'react';
@@ -30,13 +29,13 @@ const Home = ()=>{
         const horizontal = 'center';
     
     const [alert, setAlert] = useState("This ia a alert message !");
-
+    const [color, setColor] = useState("warning");
     /*********************************** */
 
     return<>
             
     <Snackbar anchorOrigin={{ vertical, horizontal }} key={vertical + horizontal} open={open} autoHideDuration={5000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+        <Alert onClose={handleClose} severity={color} sx={{ width: '100%' }}>
             {alert}
         </Alert>
     </Snackbar>
@@ -44,8 +43,7 @@ const Home = ()=>{
     <div className='h-screen w-screen relative bg-[#f6f7f9]'>
         <Title />
         <Welcome />
-        <TextArea open={setOpen} alert={setAlert}/>
-        <Response />
+        <TextArea open={setOpen} alert={setAlert} color={setColor} />
     </div>
 
     </>
