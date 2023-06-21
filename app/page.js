@@ -3,6 +3,8 @@
 import Title from '@/components/title';
 import Welcome from '@/components/welcome';
 import TextArea from '@/components/form.jsx';
+import Playlist from '@/components/playlist';
+
 
 // alert message
 import { useState, forwardRef } from 'react';
@@ -39,11 +41,12 @@ const Home = ()=>{
             {alert}
         </Alert>
     </Snackbar>
-    
-    <div className='h-screen w-screen relative bg-[#f6f7f9]'>
+   
+    <div className='h-auto w-screen overflow-x-hidden bg-[#f6f7f9] relative '>
         <Title />
         <Welcome />
         <TextArea open={setOpen} alert={setAlert} color={setColor} />
+        <Playlist />
     </div>
 
     </>
