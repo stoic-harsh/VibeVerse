@@ -2,7 +2,7 @@
 Sentiment Analyzer and Playlists Recommender built using Next.js framework.
 
 # Live Demo
-/** LINK */
+VibeVerse(https://vibe-verse.vercel.app/)
 
 ## Description
 By leveraging sentiment analysis, VibeVerse brings personalized music recommendations to a whole new level. With VibeVerse, users can express themselves freely, and the app will analyze their text to understand their mood accurately.
