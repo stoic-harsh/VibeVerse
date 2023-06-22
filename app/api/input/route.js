@@ -11,8 +11,8 @@ const openai = new OpenAIApi(configuration);
 
 export async function POST(req){
     try{
-        const data = await req.json();
-        const prompt = generatePrompt(data.prompt);
+        const { input } = await req.json();
+        const prompt = generatePrompt(input);
 
         const response = await openai.createCompletion({
             model: "text-davinci-003",
@@ -23,13 +23,14 @@ export async function POST(req){
         
         if(response){
             return NextResponse.json({
-                result: response.data.choices[0] 
+                text: response.data.choices[0].text 
             });
+        }
+        else{
+           throw new Error("CHATGPT is not giving any response");
         }
 
     }catch(err){
-        return NextResponse.json({
-            message: err.message
-        });
+        throw new Error(err.message);
     }
 }

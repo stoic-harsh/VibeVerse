@@ -1,43 +1,57 @@
 "use client";
 
 import { useState } from "react";
+import Loader from './Loader/Loader';
 
-const Form = ({open, alert, color})=>{
+const Form = ({open, alert, color, text, display, setText, setDisplay, setPlaylistsData})=>{
     const [prompt, setPrompt] = useState("");
-    const [text, setText] = useState("hey");
-    const [display, setDisplay] = useState(false);
+    const [loader, setLoader] = useState(false);
 
     // fetchRequest
     const sendData = async (prompt)=>{
         try{
+            setLoader(true);
             const response = await fetch('/api/input/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                prompt: prompt
+                input: prompt
+            })
+            });
+
+        
+        const incomingData = await response.json();
+
+        setText(incomingData.text);
+
+        const spotifyData = await fetch('/api/playlists', {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sentence: incomingData.text
             })
         });
 
-        if(response.ok){
-            const res = await response.json();
-            setText(res.result.text);
-            setDisplay(true);
-        }
-        else{
-            alert("Error occured");
-            color('warning');
-            open(true);
-        }
+        const { playlists } = await spotifyData.json();
+        setPlaylistsData(playlists);
+
+        setDisplay(true);
+        setLoader(false);
         }catch(err){
+            setLoader(false);
             alert(err.message);
             color('danger');
             open(true);
         }
     }
 
-    return <div className="mt-[60px] w-screen h-auto flex flex-col justify-center items-center">
+    
+
+    return (loader? <Loader /> : <div className="mt-[60px] w-screen h-auto flex flex-col justify-center items-center">
 
         <div className='min-w-[50vw] flex flex-col justify-center'>
         <textarea className='w-full p-3 h-[50px]
@@ -53,9 +67,7 @@ const Form = ({open, alert, color})=>{
             alert('Request Sent');
             color('success');
             open(true);
-
             sendData(prompt);
-
          }} >Submit</button>
 
         </div>
@@ -67,6 +79,7 @@ const Form = ({open, alert, color})=>{
         }   
         
     </div>
+    )
 }
 
 export default Form;

@@ -1,7 +1,4 @@
 import './globals.css'
-// import { Orbit } from 'next/font/google'
-
-// const inter = Orbit({ weight: '400', subsets: ['latin'] })
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +8,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className='w-screen overflow-x-hidden'>{children}</body>
+      <body>{children}</body>
     </html>
   )
 }

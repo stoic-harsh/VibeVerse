@@ -3,7 +3,7 @@
 import Title from '@/components/title';
 import Welcome from '@/components/welcome';
 import TextArea from '@/components/form.jsx';
-import Playlist from '@/components/playlist';
+import Playlist from '@/components/playlists';
 
 
 // alert message
@@ -34,6 +34,11 @@ const Home = ()=>{
     const [color, setColor] = useState("warning");
     /*********************************** */
 
+    const [text, setText] = useState("");
+    const [display, setDisplay] = useState(false);
+
+    const [playlistsData, setPlaylistsData] = useState();
+
     return<>
             
     <Snackbar anchorOrigin={{ vertical, horizontal }} key={vertical + horizontal} open={open} autoHideDuration={5000} onClose={handleClose}>
@@ -42,11 +47,11 @@ const Home = ()=>{
         </Alert>
     </Snackbar>
    
-    <div className='h-auto w-screen overflow-x-hidden bg-[#f6f7f9] relative '>
+    <div className='h-screen w-screen overflow-x-hidden bg-[#e9ecf2] relative'>
         <Title />
         <Welcome />
-        <TextArea open={setOpen} alert={setAlert} color={setColor} />
-        <Playlist />
+        <TextArea setPlaylistsData={setPlaylistsData} open={setOpen} alert={setAlert} color={setColor} text={text} display={display} setText={setText} setDisplay={setDisplay}/>
+        <Playlist display={display} playlistsData={playlistsData} />
     </div>
 
     </>

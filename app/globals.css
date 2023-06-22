@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+img{
+    width: 400px;
+    height: 350px;
+}
+
+#card_header{
+    height: 85px;
+}
 
 textarea:is(:focus){
     border-color: teal; 
@@ -23,6 +36,5 @@ textarea::-webkit-scrollbar{
 }
 
 #card{
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.5), -3px -3px 6px rgba(0,0,0,0.3)
-    ;
+    box-shadow: 3px 3px 5px rgb(0,0,0,0.4), -4px -4px 8px rgba(0,0,0,0.4);
 }

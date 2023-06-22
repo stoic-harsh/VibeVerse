@@ -1,29 +1,30 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Link from 'next/link';
 
+export default function ResponsiveCard({ name, owner, desc, url, image }) {
 
-export default function RecipeReviewCard() {
+  const truncate = (str, limit)=>{
+    return (str.length > limit ? str.substring(0, limit) + "..." : str);
+  }
 
   return (
-    <Card id="card" sx={{ maxWidth: 345 }}>
+    <Card id="card" className="w-[440px] h-[590px] flex flex-col" >
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="playlist">
+            { Array.from(owner)[0].toUpperCase() }
           </Avatar>
         }
         action={
@@ -31,22 +32,26 @@ export default function RecipeReviewCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={name || "Unknown Playlist"}
+        subheader={owner || "Anonymous Owner"}
+        id="card_header"
       />
-      <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
-      />
+      <Link href={url}>
+        <CardMedia
+          component="img"
+          image={image || "https://www.pngitem.com/pimgs/m/148-1487614_spotify-logo-small-spotify-logo-transparent-hd-png.png"}
+          alt={image || "spotify_logo"}
+          style={{ backgroundSize: 'cover' }}
+        />
+      </Link>
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+      <Typography variant="body2" color="text.secondary">
+        {truncate(desc, 170) || "Playlist according to your mood..."}
         </Typography>
       </CardContent>
+
+      <div style={{ flexGrow: 1 }}/>
+
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -54,6 +59,11 @@ export default function RecipeReviewCard() {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
+
+        <div style = {{ flexGrow: 1 }} />
+        <Typography variant="subtitle2">
+          Click on Image to open Spotify
+        </Typography>
       </CardActions>
     </Card>
   );
