@@ -1,5 +1,7 @@
 {
-  "name": "frontend",
+  "name": "vibe_verse",
+  "description": "Sentiment Analyzer & Music Recommender -- AI Music Therapist",
+  "author": "stoic-harsh",
   "version": "0.1.0",
   "private": true,
   "scripts": {

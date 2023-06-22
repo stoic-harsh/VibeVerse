@@ -53,7 +53,7 @@ const Home = ()=>{
         <TextArea setPlaylistsData={setPlaylistsData} open={setOpen} alert={setAlert} color={setColor} text={text} display={display} setText={setText} setDisplay={setDisplay}/>
         <Playlist display={display} playlistsData={playlistsData} />
     </div>
-
+        
     </>
 }
 

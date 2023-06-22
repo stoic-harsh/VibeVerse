@@ -17,7 +17,7 @@ img{
 }
 
 textarea:is(:focus){
-    border-color: teal; 
+    border-color: #2e8a56; 
     border-width: 3px;
 }
 

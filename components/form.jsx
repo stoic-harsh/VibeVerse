@@ -55,7 +55,7 @@ const Form = ({open, alert, color, text, display, setText, setDisplay, setPlayli
 
         <div className='min-w-[50vw] flex flex-col justify-center'>
         <textarea className='w-full p-3 h-[50px]
-        resize-none outline-none text-[16px] rounded-md border-[#dc143c] border-[2px]' placeholder = 'Tell me ...'
+        resize-none outline-none text-[16px] rounded-md border-[#ff7f50] border-[2px]' placeholder = 'Tell me ...'
         value = {prompt}
         onChange = {(event)=>{
             setPrompt(event.target.value);
