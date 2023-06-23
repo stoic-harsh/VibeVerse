@@ -54,11 +54,15 @@ const Form = ({open, alert, color, text, display, setText, setDisplay, setPlayli
     return (loader? <Loader /> : <div className="mt-[60px] w-screen h-auto flex flex-col justify-center items-center">
 
         <div className='min-w-[50vw] flex flex-col justify-center'>
-        <textarea className='w-full p-3 h-[50px]
+        <textarea className='lg:w-[50vw] w-[75vw] p-3 h-[50px]
         resize-none outline-none text-[16px] rounded-md border-[#ff7f50] border-[2px]' placeholder = 'Tell me ...'
         value = {prompt}
         onChange = {(event)=>{
             setPrompt(event.target.value);
+        }}
+
+        onInput={(event) => {
+            event.target.style.height = event.target.scrollHeight + "px";
         }}
         />
         
@@ -73,7 +77,7 @@ const Form = ({open, alert, color, text, display, setText, setDisplay, setPlayli
         </div>
 
         {
-            display && <div className = {`bg-[#22ad5529] my-10 w-[55vw] rounded-md px-6 py-4 `}>
+            display && <div className = {`bg-[#22ad5529] my-10 lg:w-[55vw] w-[80vw] rounded-md px-6 py-4 `}>
                 {text}
             </div>
         }   
