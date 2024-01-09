@@ -38,15 +38,25 @@ const Home = ()=>{
     const [display, setDisplay] = useState(false);
 
     const [playlistsData, setPlaylistsData] = useState();
-
+    
     return<>
+
+    {/* ChatGPT Api Key expired */}
+
+    <Snackbar anchorOrigin={{ vertical, horizontal }} key={vertical + horizontal} open onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+            !! ChatGPT API Key expired. Renewal is due. !! 
+        </Alert>
+    </Snackbar>
+
             
     <Snackbar anchorOrigin={{ vertical, horizontal }} key={vertical + horizontal} open={open} autoHideDuration={5000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={color} sx={{ width: '100%' }}>
             {alert}
         </Alert>
     </Snackbar>
-   
+
+    
     <div className='h-screen w-screen overflow-x-hidden bg-[#e9ecf2] relative'>
         <Title />
         <Welcome />
